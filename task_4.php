@@ -19,41 +19,40 @@ $studentGrades = array(
 );
 
 function task_4($studentGrades, $studentName){
-    $math = gradeToLetter($studentGrades[$studentName]['Math']);
-    $english = gradeToLetter($studentGrades[$studentName]['English']);
-    $science = gradeToLetter($studentGrades[$studentName]['Science']);
+    $subjectGrades = array_map('gradeToLetter', $studentGrades[$studentName]);
 
-    $rslt = ($math + $english + $science) / 3;
+    if (in_array('F', $subjectGrades)) {
+        return 'F';
+    }
+
+    $rslt = array_sum($subjectGrades) / count($subjectGrades);
     
     $finalGrade = '';
 
-    if ($math < 0.7 || $english < 0.7 || $science < 0.7) { // If fails in a single subject then direct fail
-        return 'F';
+    if ($rslt >= 3.85 && $rslt <= 4.0) {
+        return 'A+';
+    } elseif ($rslt >= 3.7 && $rslt < 3.85) {
+        return 'A-';
+    } elseif ($rslt >= 3.0 && $rslt < 3.7) {
+        return 'A';
+    } elseif ($rslt >= 2.7 && $rslt < 3.0) {
+        return 'B+';
+    } elseif ($rslt >= 2.3 && $rslt < 2.7) {
+        return 'B';
+    } elseif ($rslt >= 2.0 && $rslt < 2.3) {
+        return 'B-';
+    } elseif ($rslt >= 1.7 && $rslt < 2.0) {
+        return 'C+';
+    } elseif ($rslt >= 1.3 && $rslt < 1.7) {
+        return 'C';
+    } elseif ($rslt >= 1.0 && $rslt < 1.3) {
+        return 'C-';
+    } elseif ($rslt >= 0.7 && $rslt < 1.0) {
+        return 'D+';
     } else {
-        if ($rslt >= 3.85 && $rslt <= 4.0) {
-            return 'A+';
-        } elseif ($rslt >= 3.7 && $rslt < 3.85) {
-            return 'A-';
-        } elseif ($rslt >= 3.0 && $rslt < 3.7) {
-            return 'A';
-        } elseif ($rslt >= 2.7 && $rslt < 3.0) {
-            return 'B+';
-        } elseif ($rslt >= 2.3 && $rslt < 2.7) {
-            return 'B';
-        } elseif ($rslt >= 2.0 && $rslt < 2.3) {
-            return 'B-';
-        } elseif ($rslt >= 1.7 && $rslt < 2.0) {
-            return 'C+';
-        } elseif ($rslt >= 1.3 && $rslt < 1.7) {
-            return 'C';
-        } elseif ($rslt >= 1.0 && $rslt < 1.3) {
-            return 'C-';
-        } elseif ($rslt >= 0.7 && $rslt < 1.0) {
-            return 'D+';
-        } else {
-            return 'F';
-        }
+        return 'F';
     }
+
     return $finalGrade;
 }
 
