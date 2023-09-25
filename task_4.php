@@ -1,7 +1,24 @@
 <?php
 
-function task_4($studentGrades, $key, $math, $english, $science){
+$studentGrades = array(
+    'student1' => array(
+        'Math' => 'A+', 
+        'English' => 'A+', 
+        'Science' => 'A+',
+    ),
+    'student2' => array(
+        'Math' => 'A+', 
+        'English' => 'C', 
+        'Science' => 'B+',
+    ),
+    'student3' => array(
+        'Math' => 'A+', 
+        'English' => 'A+', 
+        'Science' => 'F',
+    ),
+);
 
+function task_4($studentGrades, $key, $math, $english, $science){
     $math = gradeToLetter($studentGrades[$key][$math]);
     $english = gradeToLetter($studentGrades[$key][$english]);
     $science = gradeToLetter($studentGrades[$key][$science]);
@@ -10,7 +27,7 @@ function task_4($studentGrades, $key, $math, $english, $science){
     
     $finalGrade = '';
 
-    if ($math < 0.7 || $english < 0.7 || $science < 0.7) { /// If fails in a single subject then direct fail
+    if ($math < 0.7 || $english < 0.7 || $science < 0.7) { // If fails in a single subject then direct fail
         return 'F';
     } else {
         if ($rslt >= 3.85 && $rslt <= 4.0) {
@@ -40,7 +57,6 @@ function task_4($studentGrades, $key, $math, $english, $science){
     return $finalGrade;
 }
 
-
 function gradeToLetter($grade) {
     switch ($grade) {
         case 'A+':
@@ -68,26 +84,8 @@ function gradeToLetter($grade) {
     }
 }
 
-$studentGrades = array(
-    'student1' => array(
-        'Math' => 'A+', 
-        'English' => 'A+', 
-        'Science' => 'A+',
-    ),
-    'student2' => array(
-        'Math' => 'A+', 
-        'English' => 'C', 
-        'Science' => 'B+',
-    ),
-    'student3' => array(
-        'Math' => 'A+', 
-        'English' => 'A+', 
-        'Science' => 'F',
-    ),
-);
-
-$student = readline('Enter the student name : ');
-
-$final_rslt = task_4($studentGrades, $student, 'Math', 'English', 'Science');
-
-echo $final_rslt;
+foreach ($studentGrades as $studentName => $grades) {
+    $final_rslt = task_4($studentGrades, $studentName, 'Math', 'English', 'Science');
+    echo "$studentName : $final_rslt\n";
+}
+?>
