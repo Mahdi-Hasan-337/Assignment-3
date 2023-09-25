@@ -18,10 +18,10 @@ $studentGrades = array(
     ),
 );
 
-function task_4($studentGrades, $key, $math, $english, $science){
-    $math = gradeToLetter($studentGrades[$key][$math]);
-    $english = gradeToLetter($studentGrades[$key][$english]);
-    $science = gradeToLetter($studentGrades[$key][$science]);
+function task_4($studentGrades, $studentName){
+    $math = gradeToLetter($studentGrades[$studentName]['Math']);
+    $english = gradeToLetter($studentGrades[$studentName]['English']);
+    $science = gradeToLetter($studentGrades[$studentName]['Science']);
 
     $rslt = ($math + $english + $science) / 3;
     
@@ -85,7 +85,7 @@ function gradeToLetter($grade) {
 }
 
 foreach ($studentGrades as $studentName => $grades) {
-    $final_rslt = task_4($studentGrades, $studentName, 'Math', 'English', 'Science');
+    $final_rslt = task_4($studentGrades, $studentName);
     echo "$studentName : $final_rslt\n";
 }
 ?>
