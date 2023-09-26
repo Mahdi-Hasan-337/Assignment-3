@@ -1,21 +1,9 @@
 <?php
 
 $studentGrades = array(
-    'student1' => array(
-        'Math' => 90, 
-        'English' => 32, 
-        'Science' => 70,
-    ),
-    'student2' => array(
-        'Math' => 75, 
-        'English' => 50, 
-        'Science' => 60,
-    ),
-    'student3' => array(
-        'Math' => 34, 
-        'English' => 35, 
-        'Science' => 32,
-    ),
+    'student1' => array('Math' => 90, 'English' => 32, 'Science' => 70),
+    'student2' => array('Math' => 75, 'English' => 50, 'Science' => 60),
+    'student3' => array('Math' => 80, 'English' => 96, 'Science' => 66),
 );
 
 function task_4($studentGrades, $studentname){
@@ -45,12 +33,17 @@ function task_4($studentGrades, $studentname){
     } else {
         $grade = 'F';
     }
+    if($average > 50){
+        $grade = 'pass';
+    }
     return $grade;
     
 }
 
+// task_4($studentGrades);
 
 foreach($studentGrades as $student => $studentgrade){
     $final = task_4($studentGrades, $student);
     echo $student ." : " .$final . "\n";
+    // $final
 }
