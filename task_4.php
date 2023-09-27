@@ -2,30 +2,33 @@
 
 $studentGrades = array(
     'student1' => array(
-        'Math' => 90, 
-        'English' => 32, 
+        'Math' => 90,
+        'English' => 32,
         'Science' => 70,
     ),
     'student2' => array(
-        'Math' => 75, 
-        'English' => 50, 
+        'Math' => 75,
+        'English' => 50,
         'Science' => 60,
     ),
     'student3' => array(
-        'Math' => 34, 
-        'English' => 35, 
+        'Math' => 34,
+        'English' => 35,
         'Science' => 32,
     ),
 );
 
-function task_4($studentGrades, $studentname){
+function task_4($studentGrades, $studentname) {
     $studentgrade = $studentGrades[$studentname];
 
-    foreach($studentgrade as $student => $grades){
-        if($grades <= 33) return "Fail";
+    foreach ($studentgrade as $student => $grades) {
+        if ($grades <= 33) {
+            return "Fail";
+        }
+
     }
 
-    $sum =  array_sum($studentgrade);
+    $sum = array_sum($studentgrade);
     $length = count($studentgrade);
     $average = $sum / $length;
     $grade = '';
@@ -46,11 +49,10 @@ function task_4($studentGrades, $studentname){
         $grade = 'F';
     }
     return $grade;
-    
+
 }
 
-
-foreach($studentGrades as $student => $studentgrade){
+foreach ($studentGrades as $student => $studentgrade) {
     $final = task_4($studentGrades, $student);
-    echo $student ." : " .$final . "\n";
+    echo $student . " : " . $final . "\n";
 }
